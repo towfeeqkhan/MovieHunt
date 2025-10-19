@@ -90,7 +90,7 @@ function MoviesList({ genreName }) {
               <div className="h-[215px]">
                 <img
                   className="w-full h-full object-cover rounded-t-lg"
-                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt="poster"
                 />
               </div>
