@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
+import { languageMap } from "../languageMap";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -19,38 +20,6 @@ async function searchMovie(movie) {
 
   return movies;
 }
-
-const languageMap = {
-  // Existing Major World Languages
-  en: "English",
-  hi: "Hindi",
-  ko: "Korean",
-  ja: "Japanese",
-  fr: "French",
-  es: "Spanish",
-  de: "German",
-  zh: "Chinese",
-  it: "Italian",
-  ru: "Russian",
-
-  // Additional Major World Languages
-  ar: "Arabic",
-  pt: "Portuguese",
-  tr: "Turkish",
-  id: "Indonesian",
-  tl: "Thai",
-  nl: "Dutch",
-  sv: "Swedish",
-  pl: "Polish",
-
-  // Indian Regional Languages
-  ta: "Tamil",
-  te: "Telugu",
-  kn: "Kannada",
-  ml: "Malayalam",
-  pa: "Punjabi",
-  ur: "Urdu",
-};
 
 function Header() {
   const [query, setQuery] = useState("");
@@ -156,60 +125,6 @@ function Header() {
       <div className="mr-10">
         <img className="h-11 cursor-pointer" src={Avatar} alt="avatar" />
       </div>
-      {/* {query && data?.length > 0 && (
-        <div className="w-86 h-65 bg-[#0F0F11] absolute right-45 bottom-[-250px] rounded-b-lg">
-          {isLoading && <p className="text-center">Searching...</p>}
-          {isError && <p>Something went wrong</p>}
-          {data?.map((movie) => (
-            <Link
-              to={`/moviedetails/${movie.id}/${movie.title
-                .replace(/\s+/g, "-")
-                .toLowerCase()}`}
-              key={movie.id}
-            >
-              <div key={movie.id} className="flex items-center gap-4 py-3 px-4">
-                <div>
-                  <img
-                    className="w-12 h-15 object-cover"
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                </div>
-                <div className="self-start">
-                  <p className="font-semibold text-[17px]">
-                    {movie.title.length > 26
-                      ? movie.title.slice(0, 26) + "..."
-                      : movie.title}
-                  </p>
-                  <div className="flex  gap-3">
-                    <div className="flex items-center gap-3 text-gray-300 mt-2">
-                      <MdLanguage size={18} />
-                      <p className="text-[13px]">
-                        {languageMap[movie.original_language] ||
-                          movie.original_language}
-                      </p>
-                    </div>
-                    <div className="self-end h-4 w-px bg-gray-300 mt-2"></div>
-                    <div className="flex items-center gap-3 text-gray-300 mt-2">
-                      <CiCalendarDate size={18} />
-                      <p className="text-[13px]">
-                        {movie.release_date.slice(0, 4)}
-                      </p>
-                    </div>
-                    <div className="self-end h-4 w-px bg-gray-300 mt-2"></div>
-                    <div className="flex items-center gap-3 text-gray-300 mt-2">
-                      <CiStar size={18} />
-                      <p className="text-[13px]">
-                        {movie.vote_average.toFixed(1)}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )} */}
     </div>
   );
 }

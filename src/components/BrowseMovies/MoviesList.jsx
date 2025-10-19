@@ -3,38 +3,7 @@ import { CiCalendarDate } from "react-icons/ci";
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-const languageMap = {
-  // Existing Major World Languages
-  en: "English",
-  hi: "Hindi",
-  ko: "Korean",
-  ja: "Japanese",
-  fr: "French",
-  es: "Spanish",
-  de: "German",
-  zh: "Chinese",
-  it: "Italian",
-  ru: "Russian",
-
-  // Additional Major World Languages
-  ar: "Arabic",
-  pt: "Portuguese",
-  tr: "Turkish",
-  id: "Indonesian",
-  tl: "Thai",
-  nl: "Dutch",
-  sv: "Swedish",
-  pl: "Polish",
-
-  // Indian Regional Languages
-  ta: "Tamil",
-  te: "Telugu",
-  kn: "Kannada",
-  ml: "Malayalam",
-  pa: "Punjabi",
-  ur: "Urdu",
-};
+import { languageMap } from "../../languageMap";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -74,7 +43,7 @@ function MoviesList({ genreName }) {
     <div className="mt-8">
       <p className="font-semibold text-white text-2xl mb-3">{genreName}</p>
 
-      {/* ✅ Scrollable container */}
+      {/* Scrollable container */}
       <div className="flex gap-10 overflow-x-auto no-scrollbar pt-2 pb-4 scroll-smooth snap-x snap-mandatory">
         {data.map((movie) => (
           <Link

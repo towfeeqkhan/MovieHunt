@@ -80,30 +80,3 @@ function MoviesBanner() {
 }
 
 export default MoviesBanner;
-
-// import Banner1 from "../../assets/banner1.png";
-
-// function MoviesBanner() {
-//   return (
-//     <>
-//       <div className="w-full relative">
-//         <img
-//           className="w-full max-h-[440px] object-cover"
-//           src={Banner1}
-//           alt="banner"
-//         />
-
-//         <div className="absolute top-16 left-8">
-//           <p className="text-6xl text-white font-bold mb-5">NETFLIX</p>
-//           <p className="text-3xl text-white mb-8">Alice in Border Land</p>
-
-//           <button className="text-white bg-[#AC1A19] py-3 px-8 rounded-3xl">
-//             Watch
-//           </button>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default MoviesBanner;
