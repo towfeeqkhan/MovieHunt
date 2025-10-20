@@ -6,10 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
 import { languageMap } from "../languageMap";
+import { useDebounce } from "../custom hook/useDebounce";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
 async function searchMovie(movie) {
+  if (!movie) return [];
   const response = await axios.get(
     `https://api.themoviedb.org/3/search/movie?query=${movie}&api_key=${apiKey}`
   );
@@ -23,13 +25,14 @@ async function searchMovie(movie) {
 
 function Header() {
   const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 500);
 
   const searchRef = useRef(null);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["searchMovie", query],
-    queryFn: () => searchMovie(query),
-    enabled: !!query,
+    queryKey: ["searchMovie", debouncedQuery],
+    queryFn: () => searchMovie(debouncedQuery),
+    enabled: !!debouncedQuery,
   });
 
   useEffect(() => {
@@ -60,10 +63,13 @@ function Header() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        {query && data?.length > 0 && (
-          <div className="w-86 h-65 bg-[#0F0F11] absolute right-45 bottom-[-250px] rounded-b-lg">
+        {debouncedQuery && (
+          <div className="w-86 h-65 bg-[#0F0F11] absolute top-full right-45 rounded-b-lg">
             {isLoading && <p className="text-center">Searching...</p>}
-            {isError && <p>Something went wrong</p>}
+            {isError && <p className="text-center">Something went wrong</p>}
+            {data?.length === 0 && (
+              <p className="text-center">No results found</p>
+            )}
             {data?.map((movie) => (
               <Link
                 to={`/moviedetails/${movie.id}/${movie.title
