@@ -57,9 +57,11 @@ function Header({ toggleSidebar }) {
       </div>
       <div
         ref={searchRef}
-        className="flex items-center customSize2:space-x-3 space-x-2 border border-[#252527] sm:w-[350px] w-[60%] px-4 py-3 rounded-[24px] customSize2:text-lg"
+        className="flex items-center customSize2:space-x-3 space-x-1.5 border border-[#252527] sm:w-[350px] w-[60%] sm:px-4 sm:py-3 px-2 py-2 rounded-[24px] customSize2:text-lg"
       >
-        <CiSearch />
+        <div className="mt-0.5">
+          <CiSearch />
+        </div>
         <input
           className="flex-1 py-1 outline-none customSize2:placeholder:text-[16px] placeholder:text-[12px]"
           type="text"
