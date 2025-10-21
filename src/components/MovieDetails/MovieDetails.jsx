@@ -6,6 +6,8 @@ import { CiStar } from "react-icons/ci";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { languageMap } from "../../languageMap";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -45,11 +47,12 @@ function MovieDetails() {
 
   return (
     <div className="px-4 md:px-8 bg-[#0F0F11] h-screen">
-      <div className="w-full">
-        <img
-          className="w-full max-h-[510px] object-cover"
+      <div className="w-full aspect-video max-h-[510px] overflow-hidden">
+        <LazyLoadImage
+          className="w-full object-cover"
           src={`https://image.tmdb.org/t/p/original/${data.backdrop_path}`}
           alt="backdrop"
+          effect="blur"
         />
       </div>
       <div className="flex items-center justify-between mt-8 text-white">

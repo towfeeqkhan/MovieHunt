@@ -4,6 +4,8 @@ import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { languageMap } from "../../languageMap";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -56,11 +58,12 @@ function MoviesList({ genreName }) {
               key={movie.id}
               className="w-45 transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03] flex-shrink-0 rounded-t-lg snap-start relative"
             >
-              <div className="h-[215px]">
-                <img
-                  className="w-full h-full object-cover rounded-t-lg"
+              <div className="max-h-[220px] aspect-[2/3] w-full overflow-hidden">
+                <LazyLoadImage
+                  className="w-full h-full rounded-t-lg"
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
+                  effect="blur"
                 />
               </div>
               <div className="h-[160px] bg-[#1F1F1F] rounded-b-lg px-5 py-4 flex flex-col justify-between">

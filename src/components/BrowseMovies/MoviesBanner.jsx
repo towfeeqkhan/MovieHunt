@@ -7,6 +7,8 @@ import "swiper/css/effect-fade";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -56,11 +58,12 @@ function MoviesBanner() {
       >
         {data?.map((banner, index) => (
           <SwiperSlide key={index}>
-            <div className="relative">
-              <img
-                className="w-full max-h-[440px] object-cover"
+            <div className="relative w-full aspect-video max-h-[470px]">
+              <LazyLoadImage
                 src={`https://image.tmdb.org/t/p/original/${banner.backdrop_path}`}
                 alt={banner.title}
+                effect="blur"
+                className={`w-full object-cover`}
               />
               <div className="absolute customSize2:top-16 customSize2:left-8 top-8 left-4">
                 <p className="sm:text-6xl text-5xl max-customSize2:text-3xl text-white font-bold max-customSize2:mb-3">
