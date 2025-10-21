@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-customSize: 900px;
+  --breakpoint-customSize2: 514px;
+}
+
+body {
+  background-color: #0f0f11;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

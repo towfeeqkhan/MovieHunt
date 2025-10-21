@@ -1,5 +1,6 @@
 import { CiSearch, CiBellOn, CiCalendarDate, CiStar } from "react-icons/ci";
 import { MdLanguage } from "react-icons/md";
+import { RxHamburgerMenu } from "react-icons/rx";
 import Avatar from "../assets/avatar.png";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
@@ -23,7 +24,7 @@ async function searchMovie(movie) {
   return movies;
 }
 
-function Header() {
+function Header({ toggleSidebar }) {
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
 
@@ -50,21 +51,24 @@ function Header() {
   }, []);
 
   return (
-    <div className="flex items-center justify-end gap-8 h-24 bg-[#0F0F11] text-white relative">
+    <div className="flex items-center justify-end customSize2:gap-8 gap-4 h-24 bg-[#0F0F11] text-white relative">
+      <div className="flex-1 sm:ml-8 ml-4 max-customSize:block hidden customSize2:text-2xl text-xl">
+        <RxHamburgerMenu onClick={toggleSidebar} />
+      </div>
       <div
         ref={searchRef}
-        className="flex items-center space-x-3 border border-[#252527] w-[350px] px-4 py-3 rounded-[24px] "
+        className="flex items-center customSize2:space-x-3 space-x-2 border border-[#252527] sm:w-[350px] w-[60%] px-4 py-3 rounded-[24px] customSize2:text-lg"
       >
-        <CiSearch size={24} />
+        <CiSearch />
         <input
-          className="flex-1 py-1 outline-none"
+          className="flex-1 py-1 outline-none customSize2:placeholder:text-[16px] placeholder:text-[12px]"
           type="text"
           placeholder="Search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
         {debouncedQuery && (
-          <div className="w-86 h-65 bg-[#0F0F11] absolute top-full right-45 rounded-b-lg">
+          <div className="w-86 h-65 bg-[#0F0F11] absolute top-full sm:right-45 right-30 max-customSize2:right-5 rounded-b-lg">
             {isLoading && <p className="text-center">Searching...</p>}
             {isError && <p className="text-center">Something went wrong</p>}
             {data?.length === 0 && (
@@ -125,11 +129,15 @@ function Header() {
           </div>
         )}
       </div>
-      <div className="cursor-pointer">
-        <CiBellOn size={30} />
+      <div className="cursor-pointer customSize2:text-[28px] text-[25px]">
+        <CiBellOn />
       </div>
-      <div className="mr-10">
-        <img className="h-11 cursor-pointer" src={Avatar} alt="avatar" />
+      <div className="customSize2:mr-10 mr-3">
+        <img
+          className="w-11 max-customSize2:w-9 cursor-pointer"
+          src={Avatar}
+          alt="avatar"
+        />
       </div>
     </div>
   );

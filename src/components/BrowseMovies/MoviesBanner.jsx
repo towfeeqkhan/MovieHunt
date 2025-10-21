@@ -62,11 +62,15 @@ function MoviesBanner() {
                 src={`https://image.tmdb.org/t/p/original/${banner.backdrop_path}`}
                 alt={banner.title}
               />
-              <div className="absolute top-16 left-8">
-                <p className="text-6xl text-white font-bold mb-5">NETFLIX</p>
-                <p className="text-3xl text-white mb-8">{banner.title}</p>
+              <div className="absolute customSize2:top-16 customSize2:left-8 top-8 left-4">
+                <p className="sm:text-6xl text-5xl max-customSize2:text-3xl text-white font-bold max-customSize2:mb-3">
+                  NETFLIX
+                </p>
+                <p className="sm:text-3xl text-2xl max-customSize2:text-xl text-white mb-8 max-customSize2:mb-4">
+                  {banner.title}
+                </p>
                 <Link to={`/moviedetails/${banner.id}/${banner.title}`}>
-                  <button className="text-white bg-[#AC1A19] py-3 px-8 rounded-3xl">
+                  <button className="text-white bg-[#AC1A19] py-3 sm:px-8 px-6 max-customSize2:text-[12px] rounded-3xl">
                     Watch
                   </button>
                 </Link>

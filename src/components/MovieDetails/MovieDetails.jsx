@@ -44,7 +44,7 @@ function MovieDetails() {
   }
 
   return (
-    <div className="px-4 md:px-8 pb-16 bg-[#0F0F11]">
+    <div className="px-4 md:px-8 bg-[#0F0F11] h-screen">
       <div className="w-full">
         <img
           className="w-full max-h-[510px] object-cover"
@@ -53,9 +53,9 @@ function MovieDetails() {
         />
       </div>
       <div className="flex items-center justify-between mt-8 text-white">
-        <p className="text-[28px] font-semibold">{data.title}</p>
-        <button className="cursor-pointer rounded-2xl">
-          <GoHeartFill size={32} />
+        <p className="text-[28px] max-md:w-[80%] font-semibold">{data.title}</p>
+        <button className="cursor-pointer max-md:self-start max-md:mt-3 rounded-2xl customSize2:text-3xl text-2xl">
+          <GoHeartFill />
         </button>
       </div>
       <div className="flex gap-4">
